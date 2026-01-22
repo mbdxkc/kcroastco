@@ -15,8 +15,8 @@
   --text:         rgba(255,250,245,.9);
   --muted:        rgba(255,250,245,.6);
 
-  /* fonts - artisinal */
-  :root{
+:root{
+  /* fonts - artisanal */
   --font-body: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Fraunces", serif;
 }
@@ -72,7 +72,6 @@ html,body{
 
 html{
   overflow-x: hidden;
-  scrollbar-gutter: stable both-edges;
   scroll-behavior: smooth;
 }
 
@@ -294,9 +293,9 @@ blockquote{
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  padding: 0 1.5rem;
   height: 100%;
 }
+
 
 .nav{
   display: grid;
@@ -379,6 +378,22 @@ blockquote{
     transform var(--t-fast) ease,
     opacity var(--t-fast) ease;
 }
+
+/* remove bullets from header navigation lists */
+.nav ul,
+.nav li{
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem;
+}
+
+
+@media (min-width: 768px){
+  .nav-toggle{
+    display: none !important;
+  }
+}
+
 
 /* mobile menu panel */
 .mobile-menu{
