@@ -4,20 +4,18 @@
    @project    kc roast co
    @desc       header navigation injection + mobile menu
    @author     valdez campos <dez@mediabrilliance.io>
-   @version    1.0
+   @version    1.1
    ========================================================= */
 
-(function() {
+(function () {
   'use strict';
 
   /* ---------------------------------------------------------
      configuration
      --------------------------------------------------------- */
   const CONFIG = {
-    siteName: 'kc roast co',
     siteUrl: '/',
-    
-    // navigation links
+
     navLinks: [
       { label: 'menu', href: '/menu' },
       { label: 'shop', href: '/shop' },
@@ -25,431 +23,184 @@
       { label: 'contact', href: '/contact' }
     ],
 
-    // social links
     socialLinks: [
-      { 
-        label: 'Instagram', 
+      {
+        label: 'Instagram',
         href: 'https://instagram.com/kcroastco',
         icon: 'instagram'
-      },
-      { 
-        label: 'Twitter', 
-        href: 'https://twitter.com/kcroastco',
-        icon: 'twitter'
       }
     ],
 
-    // behavior
-    scrollThreshold: 50,      // px before header changes style
-    enableScrollEffect: true,
+    scrollThreshold: 50,
     enableMobileMenu: true
   };
 
-
   /* ---------------------------------------------------------
-     icon SVGs
+     icons
      --------------------------------------------------------- */
   const ICONS = {
     instagram: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-      </svg>
-    `,
-    twitter: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4l11.733 16h4.267l-11.733 -16z"/>
-        <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8"/>
+        <circle cx="17.5" cy="6.5" r="1"/>
       </svg>
     `,
     menu: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="3" y1="6" x2="21" y2="6"/>
         <line x1="3" y1="12" x2="21" y2="12"/>
         <line x1="3" y1="18" x2="21" y2="18"/>
       </svg>
     `,
     close: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="18" y1="6" x2="6" y2="18"/>
         <line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
     `
   };
 
-
   /* ---------------------------------------------------------
-     state
+     helpers
      --------------------------------------------------------- */
-  const state = {
-    mobileMenuOpen: false,
-    scrolled: false,
-    currentPath: window.location.pathname
-  };
+  function el(tag, attrs = {}, children = []) {
+    const node = document.createElement(tag);
 
+    Object.entries(attrs).forEach(([k, v]) => {
+      if (k === 'class') node.className = v;
+      else if (k === 'html') node.innerHTML = v;
+      else node.setAttribute(k, v);
+    });
 
-  /* ---------------------------------------------------------
-     utility functions
-     --------------------------------------------------------- */
-  
-  /**
-   * Check if a nav link matches the current path
-   */
-  function isActivePath(href) {
-    const current = state.currentPath.replace(/\/$/, '') || '/';
-    const link = href.replace(/\/$/, '') || '/';
-    
-    // exact match
-    if (current === link) return true;
-    
-    // child page match (e.g., /shop/item matches /shop)
-    if (link !== '/' && current.startsWith(link)) return true;
-    
-    return false;
+    children.forEach(c => {
+      if (typeof c === 'string') node.appendChild(document.createTextNode(c));
+      else if (c) node.appendChild(c);
+    });
+
+    return node;
   }
 
-  /**
-   * Create element with attributes
-   */
-  function createElement(tag, attrs = {}, children = []) {
-    const el = document.createElement(tag);
-    
-    Object.entries(attrs).forEach(([key, value]) => {
-      if (key === 'className') {
-        el.className = value;
-      } else if (key === 'innerHTML') {
-        el.innerHTML = value;
-      } else if (key.startsWith('data')) {
-        el.setAttribute(key.replace(/([A-Z])/g, '-$1').toLowerCase(), value);
-      } else {
-        el.setAttribute(key, value);
-      }
-    });
-    
-    children.forEach(child => {
-      if (typeof child === 'string') {
-        el.appendChild(document.createTextNode(child));
-      } else if (child) {
-        el.appendChild(child);
-      }
-    });
-    
-    return el;
+  function isActive(href) {
+    const p = window.location.pathname.replace(/\/$/, '');
+    const h = href.replace(/\/$/, '');
+    return p === h || (h && p.startsWith(h));
   }
 
-
   /* ---------------------------------------------------------
-     build header HTML
+     build header
      --------------------------------------------------------- */
   function buildHeader() {
     const header = document.getElementById('site-header');
     if (!header) return;
 
-    // create header grid container
-    const headerGrid = createElement('div', { className: 'header-grid' });
-    
-    // create nav
-    const nav = createElement('nav', { 
-      className: 'nav',
-      'aria-label': 'main navigation'
-    });
+    const grid = el('div', { class: 'header-grid' });
+    const nav = el('nav', { class: 'nav', 'aria-label': 'Main navigation' });
 
-    // --- LEFT: Page links ---
-    const navLeft = createElement('div', { className: 'nav-left' });
-    const pages = createElement('ul', { className: 'pages', role: 'list' });
-    
+    /* LEFT */
+    const left = el('div', { class: 'nav-left' });
+    const pages = el('ul', { class: 'pages', role: 'list' });
+
     CONFIG.navLinks.forEach(link => {
-      const li = createElement('li');
-      const a = createElement('a', {
-        href: link.href,
-        className: `nav-link${isActivePath(link.href) ? ' is-active' : ''}`
-      }, [link.label]);
-      
-      if (isActivePath(link.href)) {
+      const a = el(
+        'a',
+        {
+          href: link.href,
+          class: `nav-link${isActive(link.href) ? ' is-active' : ''}`
+        },
+        [link.label]
+      );
+
+      if (isActive(link.href)) {
         a.setAttribute('aria-current', 'page');
       }
-      
-      li.appendChild(a);
-      pages.appendChild(li);
-    });
-    
-    navLeft.appendChild(pages);
 
-    // --- CENTER: Logo/Site name ---
-    const navCenter = createElement('div', { className: 'nav-center header-title' });
-    const logoLink = createElement('a', { href: CONFIG.siteUrl }, [CONFIG.siteName]);
-    navCenter.appendChild(logoLink);
-
-    // --- RIGHT: Socials + Mobile toggle ---
-    const navRight = createElement('div', { className: 'nav-right' });
-    
-    // social links
-    const socials = createElement('ul', { className: 'socials', role: 'list' });
-    
-    CONFIG.socialLinks.forEach(link => {
-      const li = createElement('li');
-      const a = createElement('a', {
-        href: link.href,
-        className: 'nav-link nav-link--social',
-        target: '_blank',
-        rel: 'noopener noreferrer',
-        'aria-label': link.label,
-        innerHTML: `<span class="icon">${ICONS[link.icon]}</span>`
-      });
-      li.appendChild(a);
-      socials.appendChild(li);
-    });
-    
-    navRight.appendChild(socials);
-
-    // mobile menu toggle button
-    if (CONFIG.enableMobileMenu) {
-      const mobileToggle = createElement('button', {
-        className: 'nav-toggle',
-        type: 'button',
-        'aria-label': 'Toggle mobile menu',
-        'aria-expanded': 'false',
-        'aria-controls': 'mobile-menu',
-        innerHTML: `<span class="icon">${ICONS.menu}</span>`
-      });
-      navRight.appendChild(mobileToggle);
-    }
-
-    // assemble nav
-    nav.appendChild(navLeft);
-    nav.appendChild(navCenter);
-    nav.appendChild(navRight);
-    
-    // assemble header
-    headerGrid.appendChild(nav);
-    header.appendChild(headerGrid);
-
-    // build mobile menu
-    if (CONFIG.enableMobileMenu) {
-      buildMobileMenu();
-    }
-  }
-
-
-  /* ---------------------------------------------------------
-     build mobile menu
-     --------------------------------------------------------- */
-  function buildMobileMenu() {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    if (!mobileMenu) return;
-
-    // set ID for aria-controls
-    mobileMenu.id = 'mobile-menu';
-    mobileMenu.setAttribute('aria-hidden', 'true');
-
-    // create nav list
-    const navList = createElement('nav', { 
-      className: 'mobile-nav',
-      'aria-label': 'mobile navigation'
-    });
-    
-    const ul = createElement('ul', { className: 'mobile-nav__list', role: 'list' });
-
-    // add nav links
-    CONFIG.navLinks.forEach(link => {
-      const li = createElement('li', { className: 'mobile-nav__item' });
-      const a = createElement('a', {
-        href: link.href,
-        className: `nav-link${isActivePath(link.href) ? ' is-active' : ''}`
-      }, [link.label]);
-      
-      if (isActivePath(link.href)) {
-        a.setAttribute('aria-current', 'page');
-      }
-      
-      li.appendChild(a);
-      ul.appendChild(li);
+      pages.appendChild(el('li', {}, [a]));
     });
 
-    navList.appendChild(ul);
+    left.appendChild(pages);
 
-    // add social links section
-    const socialSection = createElement('div', { className: 'mobile-nav__socials' });
-    const socialTitle = createElement('span', { className: 'mobile-nav__label' }, ['follow us']);
-    const socialLinks = createElement('div', { className: 'mobile-nav__social-links' });
+    /* CENTER LOGO */
+    const center = el('div', { class: 'nav-center header-logo' });
+
+    const logoLink = el('a', {
+      href: CONFIG.siteUrl,
+      'aria-label': 'kc roast co home'
+    });
+
+    const logoImg = el('img', {
+      src: '/images/kcroastco_logo.svg',
+      alt: 'kc roast co',
+      class: 'site-logo',
+      width: '140',
+      height: '36'
+    });
+
+    logoLink.appendChild(logoImg);
+    center.appendChild(logoLink);
+
+    /* RIGHT */
+    const right = el('div', { class: 'nav-right' });
+    const socials = el('ul', { class: 'socials', role: 'list' });
 
     CONFIG.socialLinks.forEach(link => {
-      const a = createElement('a', {
-        href: link.href,
-        className: 'mobile-nav__social-link',
-        target: '_blank',
-        rel: 'noopener noreferrer',
-        'aria-label': link.label,
-        innerHTML: `<span class="icon">${ICONS[link.icon]}</span> ${link.label}`
-      });
-      socialLinks.appendChild(a);
+      socials.appendChild(
+        el('li', {}, [
+          el('a', {
+            href: link.href,
+            target: '_blank',
+            rel: 'noopener',
+            class: 'nav-link nav-link--social',
+            'aria-label': link.label,
+            html: ICONS[link.icon]
+          })
+        ])
+      );
     });
 
-    socialSection.appendChild(socialTitle);
-    socialSection.appendChild(socialLinks);
+    right.appendChild(socials);
 
-    // assemble mobile menu
-    mobileMenu.appendChild(navList);
-    mobileMenu.appendChild(socialSection);
+    if (CONFIG.enableMobileMenu) {
+      right.appendChild(
+        el('button', {
+          class: 'nav-toggle',
+          'aria-label': 'Toggle menu',
+          'aria-expanded': 'false',
+          html: ICONS.menu
+        })
+      );
+    }
+
+    nav.append(left, center, right);
+    grid.appendChild(nav);
+    header.appendChild(grid);
   }
 
-
   /* ---------------------------------------------------------
-     mobile menu toggle
+     mobile menu
      --------------------------------------------------------- */
-  function toggleMobileMenu(forceClose = false) {
+  function bindMobileMenu() {
     const toggle = document.querySelector('.nav-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    if (!toggle || !mobileMenu) return;
+    const menu = document.querySelector('.mobile-menu');
+    if (!toggle || !menu) return;
 
-    if (forceClose || state.mobileMenuOpen) {
-      // close menu
-      state.mobileMenuOpen = false;
-      mobileMenu.classList.remove('is-active');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.innerHTML = `<span class="icon">${ICONS.menu}</span>`;
-      document.body.classList.remove('menu-open');
-      
-      // restore scroll
-      document.body.style.overflow = '';
-    } else {
-      // open menu
-      state.mobileMenuOpen = true;
-      mobileMenu.classList.add('is-active');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.innerHTML = `<span class="icon">${ICONS.close}</span>`;
-      document.body.classList.add('menu-open');
-      
-      // prevent body scroll
-      document.body.style.overflow = 'hidden';
-      
-      // focus first link
-      const firstLink = mobileMenu.querySelector('.nav-link');
-      if (firstLink) {
-        setTimeout(() => firstLink.focus(), 100);
-      }
-    }
-  }
+    let open = false;
 
-
-  /* ---------------------------------------------------------
-     scroll effects
-     --------------------------------------------------------- */
-  function handleScroll() {
-    if (!CONFIG.enableScrollEffect) return;
-
-    const header = document.getElementById('site-header');
-    if (!header) return;
-
-    const scrolled = window.scrollY > CONFIG.scrollThreshold;
-
-    if (scrolled !== state.scrolled) {
-      state.scrolled = scrolled;
-      header.classList.toggle('is-scrolled', scrolled);
-    }
-  }
-
-
-  /* ---------------------------------------------------------
-     event listeners
-     --------------------------------------------------------- */
-  function bindEvents() {
-    // mobile menu toggle
-    const toggle = document.querySelector('.nav-toggle');
-    if (toggle) {
-      toggle.addEventListener('click', () => toggleMobileMenu());
-    }
-
-    // close mobile menu on link click
-    const mobileMenu = document.querySelector('.mobile-menu');
-    if (mobileMenu) {
-      mobileMenu.addEventListener('click', (e) => {
-        if (e.target.matches('.nav-link')) {
-          toggleMobileMenu(true);
-        }
-      });
-    }
-
-    // close mobile menu on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && state.mobileMenuOpen) {
-        toggleMobileMenu(true);
-        document.querySelector('.nav-toggle')?.focus();
-      }
-    });
-
-    // scroll handler (throttled)
-    let scrollTicking = false;
-    window.addEventListener('scroll', () => {
-      if (!scrollTicking) {
-        window.requestAnimationFrame(() => {
-          handleScroll();
-          scrollTicking = false;
-        });
-        scrollTicking = true;
-      }
-    }, { passive: true });
-
-    // close mobile menu on resize to desktop
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        if (window.innerWidth > 768 && state.mobileMenuOpen) {
-          toggleMobileMenu(true);
-        }
-      }, 100);
-    });
-
-    // handle click outside mobile menu
-    document.addEventListener('click', (e) => {
-      if (state.mobileMenuOpen) {
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const toggle = document.querySelector('.nav-toggle');
-        
-        if (mobileMenu && toggle && 
-            !mobileMenu.contains(e.target) && 
-            !toggle.contains(e.target)) {
-          toggleMobileMenu(true);
-        }
-      }
+    toggle.addEventListener('click', () => {
+      open = !open;
+      menu.classList.toggle('is-active', open);
+      toggle.innerHTML = open ? ICONS.close : ICONS.menu;
+      toggle.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
     });
   }
 
-
   /* ---------------------------------------------------------
-     initialization
+     init
      --------------------------------------------------------- */
-  function init() {
-    // wait for DOM
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        buildHeader();
-        bindEvents();
-        handleScroll(); // check initial scroll position
-      });
-    } else {
-      buildHeader();
-      bindEvents();
-      handleScroll();
-    }
-  }
-
-  // run
-  init();
-
-
-  /* ---------------------------------------------------------
-     expose public API (optional)
-     --------------------------------------------------------- */
-  window.KCHeader = {
-    toggleMobileMenu,
-    getState: () => ({ ...state }),
-    updateConfig: (newConfig) => Object.assign(CONFIG, newConfig)
-  };
+  document.addEventListener('DOMContentLoaded', () => {
+    buildHeader();
+    bindMobileMenu();
+  });
 
 })();
