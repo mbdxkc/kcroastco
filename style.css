@@ -427,6 +427,32 @@ blockquote{
   }
 }
 
+/* =========================================================
+   responsive header behavior
+   ========================================================= */
+
+/* mobile first: hide desktop links */
+@media (max-width: 767px){
+  .nav-left-section.pages{
+    display: none;
+  }
+
+  .nav .socials{
+    display: none;
+  }
+
+  .nav-toggle{
+    display: inline-flex;
+  }
+}
+
+/* desktop: hide toggle */
+@media (min-width: 768px){
+  .nav-toggle{
+    display: none;
+  }
+}
+
 
 /* mobile menu panel */
 .mobile-menu{
