@@ -123,6 +123,15 @@
           </a>
         </div>
 
+        <!-- MOBILE MENU PANEL (hidden by default) -->
+        <div class="mobile-menu" id="mobile-menu">
+          <a href="/index.html" class="nav-link"${linkAttrs(isHome)}>home</a>
+          <a href="/menu.html" class="nav-link"${linkAttrs(isMenu)}>menu</a>
+          <a href="/shop.html" class="nav-link"${linkAttrs(isShop)}>shop</a>
+          <a href="/about.html" class="nav-link">about</a>
+          <a href="/contact.html" class="nav-link">contact</a>
+        </div>
+
         <!-- RIGHT: UTILITY/SOCIAL ICONS with hover effects -->
         <div class="socials">
           <!-- About link -->
@@ -176,10 +185,41 @@
     }
 
     headerEl.innerHTML = headerHTML;
+    initMobileMenu();
   }
 
   /* --------------------------------------------------------------------------
-   * 5. INITIALIZATION
+   * 5. MOBILE MENU TOGGLE
+   * --------------------------------------------------------------------------
+   * Handles mobile hamburger menu open/close functionality.
+   * Toggles .is-active class on menu and updates ARIA attributes.
+   * -------------------------------------------------------------------------- */
+  function initMobileMenu() {
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('is-active');
+      toggle.setAttribute('aria-expanded', isOpen);
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      toggle.classList.toggle('is-active', isOpen);
+    });
+
+    // Close menu when clicking a link
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('is-active');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        toggle.classList.remove('is-active');
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+   * 6. INITIALIZATION
    * --------------------------------------------------------------------------
    * Executes header injection when DOM is ready.
    * Handles both scenarios:

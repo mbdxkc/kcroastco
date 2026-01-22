@@ -492,6 +492,19 @@ blockquote{
     opacity var(--t-fast) ease;
 }
 
+/* hamburger to X animation */
+.nav-toggle.is-active span:nth-child(1){
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.is-active span:nth-child(2){
+  opacity: 0;
+}
+
+.nav-toggle.is-active span:nth-child(3){
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* remove bullets from header navigation lists */
 .nav ul,
 .nav li{
@@ -544,6 +557,7 @@ blockquote{
 }
 
 .mobile-menu.is-active{
+  display: block;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
