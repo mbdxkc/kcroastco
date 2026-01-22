@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+============================================================================
+kc roast co — sitemap.xml
+============================================================================
+@project    kc roast co case study
+@version    1.0.0
+@author     Valdez Campos <dez@mediabrilliance.io>
+@date       2026-01-22
+
+@desc       XML sitemap for search engine discovery.
+            Lists all public pages with priority and change frequency.
+            Submit to Google Search Console and Bing Webmaster Tools.
+============================================================================
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home Page (highest priority) -->
+  <url>
+    <loc>https://kcroastco.mediabrilliance.io/</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Menu Page -->
+  <url>
+    <loc>https://kcroastco.mediabrilliance.io/menu.html</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Shop Page -->
+  <url>
+    <loc>https://kcroastco.mediabrilliance.io/shop.html</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://kcroastco.mediabrilliance.io/about.html</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://kcroastco.mediabrilliance.io/contact.html</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,50 @@
+# ============================================================================
+# kc roast co — robots.txt
+# ============================================================================
+# @project    kc roast co case study
+# @version    1.0.0
+# @author     Valdez Campos <dez@mediabrilliance.io>
+# @date       2026-01-22
+#
+# @desc       Crawler directives for search engine bots.
+#             Allows all pages to be indexed, blocks sensitive directories.
+# ============================================================================
+
+# Allow all crawlers access to all public content
+User-agent: *
+Allow: /
+
+# Block access to sensitive/private directories
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_private/
+
+# Block common non-content files
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Crawl-delay for polite crawling (optional, respected by some bots)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://kcroastco.mediabrilliance.io/sitemap.xml
+
+# ============================================================================
+# Specific bot rules (optional)
+# ============================================================================
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# GPTBot (OpenAI) - allow for AI training/search
+User-agent: GPTBot
+Allow: /
+
+# ClaudeBot (Anthropic) - allow for AI training/search
+User-agent: ClaudeBot
+Allow: /

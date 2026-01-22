@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--
+    ============================================================================
+    kc roast co — menu page
+    ============================================================================
+    @project    kc roast co case study
+    @version    1.0.0
+    @author     valdez campos <dez@mediabrilliance.io>
+    @date       2026-01-22
+    @file       menu.html
+
+    @desc       Full café menu for KC Roast Co. featuring espresso drinks,
+                brewed coffee, seasonal specials, non-coffee beverages,
+                and add-on options with pricing.
+
+    @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+
+    @a11y       - WCAG 2.1 AA compliant
+                - Semantic heading hierarchy
+                - Proper list markup for menu items
+                - Screen reader friendly pricing
+
+    @perf       - Lazy-loaded images
+                - Deferred scripts
+                - Preconnect to external origins
+    ============================================================================
+    -->
+
+    <!-- =====================================================================
+         CHARACTER ENCODING & VIEWPORT
+         ===================================================================== -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- =====================================================================
+         SEO & SOCIAL META
+         ===================================================================== -->
+    <title>menu | kc roast co</title>
+    <meta name="description" content="Explore our café menu featuring espresso drinks, pour overs, cold brew, and seasonal specialties. Crafted with care in Kansas City." />
+    <meta name="keywords" content="coffee menu, espresso, latte, cold brew, kansas city café" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://kcroastco.mediaBrilliance.io/menu" />
+
+    <!-- open graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="menu | kc roast co" />
+    <meta property="og:description" content="Explore our café menu featuring espresso drinks, pour overs, and seasonal specialties." />
+    <meta property="og:url" content="https://kcroastco.mediabrilliance.io/menu" />
+    <meta property="og:image" content="https://kcroastco.mediabrilliance.io/og.png" />
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="menu | kc roast co" />
+    <meta name="twitter:description" content="Explore our café menu featuring espresso drinks and seasonal specialties." />
+
+    <!-- =====================================================================
+         THEME & ICONS
+         ===================================================================== -->
+    <meta name="theme-color" content="#0F0D0C" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- =====================================================================
+         PRECONNECT & FONTS
+         ===================================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =====================================================================
+         STYLESHEET
+         ===================================================================== -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- =====================================================================
+         STRUCTURED DATA (JSON-LD)
+         ===================================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Menu",
+      "name": "KC Roast Co. Café Menu",
+      "description": "Full café menu featuring espresso drinks, brewed coffee, and seasonal specials",
+      "hasMenuSection": [
+        {
+          "@type": "MenuSection",
+          "name": "Espresso",
+          "hasMenuItem": [
+            {"@type": "MenuItem", "name": "Espresso", "price": "3.50", "priceCurrency": "USD"},
+            {"@type": "MenuItem", "name": "Americano", "price": "4.00", "priceCurrency": "USD"},
+            {"@type": "MenuItem", "name": "Latte", "price": "5.50", "priceCurrency": "USD"}
+          ]
+        }
+      ]
+    }
+    </script>
+
+  </head>
+
+  <body>
+    <!-- =====================================================================
+         PAGE TRANSITION & SKIP LINK
+         ===================================================================== -->
+    <div id="page-transition" aria-hidden="true"></div>
+    <a class="skip-link" href="#main-content">skip to main content</a>
+
+    <!-- =====================================================================
+         HEADER
+         ===================================================================== -->
+    <header id="site-header" class="site-header" role="banner"></header>
+
+    <!-- =====================================================================
+         MOBILE MENU
+         ===================================================================== -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true"></nav>
+
+    <!-- =====================================================================
+         MAIN CONTENT
+         ===================================================================== -->
+    <main id="main-content" role="main">
+
+      <!-- =================================================================
+           PAGE HEADER
+           ================================================================= -->
+      <section class="section section__header--page" aria-labelledby="page-title">
+        <div class="container">
+          <h1 id="page-title" class="section__title">café menu</h1>
+          <p class="section__subtitle">crafted drinks, made with care</p>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           ESPRESSO DRINKS
+           ================================================================= -->
+      <section class="section" aria-labelledby="espresso-heading">
+        <header class="section__header">
+          <h2 id="espresso-heading" class="section__title">espresso</h2>
+          <p class="section__subtitle">pulled fresh on our la marzocco</p>
+        </header>
+
+        <ul class="menu-list" role="list">
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">espresso</span>
+              <span class="menu-list__desc">double shot, bold and bright</span>
+            </div>
+            <span class="menu-list__price" aria-label="3 dollars and 50 cents">$3.50</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">americano</span>
+              <span class="menu-list__desc">espresso with hot water</span>
+            </div>
+            <span class="menu-list__price" aria-label="4 dollars">$4.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">cortado</span>
+              <span class="menu-list__desc">equal parts espresso and steamed milk</span>
+            </div>
+            <span class="menu-list__price" aria-label="4 dollars and 50 cents">$4.50</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">cappuccino</span>
+              <span class="menu-list__desc">espresso with thick, velvety foam</span>
+            </div>
+            <span class="menu-list__price" aria-label="5 dollars">$5.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">latte</span>
+              <span class="menu-list__desc">espresso with steamed milk</span>
+            </div>
+            <span class="menu-list__price" aria-label="5 dollars and 50 cents">$5.50</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">mocha</span>
+              <span class="menu-list__desc">espresso, chocolate, steamed milk</span>
+            </div>
+            <span class="menu-list__price" aria-label="6 dollars">$6.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">flat white</span>
+              <span class="menu-list__desc">ristretto with microfoam</span>
+            </div>
+            <span class="menu-list__price" aria-label="5 dollars">$5.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">macchiato</span>
+              <span class="menu-list__desc">espresso marked with foam</span>
+            </div>
+            <span class="menu-list__price" aria-label="4 dollars">$4.00</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           SEASONAL SPECIALS
+           ================================================================= -->
+      <section class="section section--featured" aria-labelledby="seasonal-heading">
+        <header class="section__header">
+          <h2 id="seasonal-heading" class="section__title">seasonal specials</h2>
+          <p class="section__subtitle">limited time offerings</p>
+        </header>
+
+        <ul class="menu-list" role="list">
+          <li class="menu-list__item menu-list__item--featured">
+            <div class="menu-list__details">
+              <span class="menu-list__name">lavender latte</span>
+              <span class="menu-list__desc">house-made lavender syrup with espresso and oat milk</span>
+            </div>
+            <span class="menu-list__price" aria-label="6 dollars and 50 cents">$6.50</span>
+          </li>
+          <li class="menu-list__item menu-list__item--featured">
+            <div class="menu-list__details">
+              <span class="menu-list__name">honey cardamom cold brew</span>
+              <span class="menu-list__desc">24-hour cold brew with local honey and cardamom</span>
+            </div>
+            <span class="menu-list__price" aria-label="6 dollars">$6.00</span>
+          </li>
+          <li class="menu-list__item menu-list__item--featured">
+            <div class="menu-list__details">
+              <span class="menu-list__name">maple oat latte</span>
+              <span class="menu-list__desc">real maple syrup, oat milk, and espresso</span>
+            </div>
+            <span class="menu-list__price" aria-label="6 dollars and 50 cents">$6.50</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           BREWED COFFEE
+           ================================================================= -->
+      <section class="section" aria-labelledby="brewed-heading">
+        <header class="section__header">
+          <h2 id="brewed-heading" class="section__title">brewed coffee</h2>
+          <p class="section__subtitle">slow-brewed, always fresh</p>
+        </header>
+
+        <ul class="menu-list" role="list">
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">drip coffee</span>
+              <span class="menu-list__desc">rotating single origin, brewed fresh hourly</span>
+            </div>
+            <span class="menu-list__price">$3.00 / $4.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">pour over</span>
+              <span class="menu-list__desc">hand-poured v60, choose your beans</span>
+            </div>
+            <span class="menu-list__price" aria-label="5 dollars and 50 cents">$5.50</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">cold brew</span>
+              <span class="menu-list__desc">24-hour steeped, smooth and bold</span>
+            </div>
+            <span class="menu-list__price" aria-label="5 dollars">$5.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">nitro cold brew</span>
+              <span class="menu-list__desc">cold brew infused with nitrogen, creamy texture</span>
+            </div>
+            <span class="menu-list__price" aria-label="6 dollars">$6.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">french press</span>
+              <span class="menu-list__desc">full-bodied, serves two</span>
+            </div>
+            <span class="menu-list__price" aria-label="7 dollars">$7.00</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           NON-COFFEE DRINKS
+           ================================================================= -->
+      <section class="section" aria-labelledby="other-heading">
+        <header class="section__header">
+          <h2 id="other-heading" class="section__title">not coffee</h2>
+          <p class="section__subtitle">for the non-coffee folks</p>
+        </header>
+
+        <ul class="menu-list" role="list">
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">matcha latte</span>
+              <span class="menu-list__desc">ceremonial grade matcha with steamed milk</span>
+            </div>
+            <span class="menu-list__price" aria-label="5 dollars and 50 cents">$5.50</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">chai latte</span>
+              <span class="menu-list__desc">house-spiced chai concentrate</span>
+            </div>
+            <span class="menu-list__price" aria-label="5 dollars">$5.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">hot chocolate</span>
+              <span class="menu-list__desc">rich chocolate with steamed milk</span>
+            </div>
+            <span class="menu-list__price" aria-label="4 dollars and 50 cents">$4.50</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">steamer</span>
+              <span class="menu-list__desc">steamed milk with your choice of flavor</span>
+            </div>
+            <span class="menu-list__price" aria-label="4 dollars">$4.00</span>
+          </li>
+          <li class="menu-list__item">
+            <div class="menu-list__details">
+              <span class="menu-list__name">loose leaf tea</span>
+              <span class="menu-list__desc">rotating selection of premium teas</span>
+            </div>
+            <span class="menu-list__price" aria-label="4 dollars">$4.00</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           ADD-ONS
+           ================================================================= -->
+      <section class="section section--featured" aria-labelledby="addons-heading">
+        <header class="section__header">
+          <h2 id="addons-heading" class="section__title">add-ons</h2>
+        </header>
+
+        <ul class="menu-list menu-list--compact" role="list">
+          <li class="menu-list__item">
+            <span class="menu-list__name">extra shot</span>
+            <span class="menu-list__price">+$1.00</span>
+          </li>
+          <li class="menu-list__item">
+            <span class="menu-list__name">oat milk</span>
+            <span class="menu-list__price">+$0.75</span>
+          </li>
+          <li class="menu-list__item">
+            <span class="menu-list__name">almond milk</span>
+            <span class="menu-list__price">+$0.75</span>
+          </li>
+          <li class="menu-list__item">
+            <span class="menu-list__name">flavor syrup</span>
+            <span class="menu-list__price">+$0.50</span>
+          </li>
+          <li class="menu-list__item">
+            <span class="menu-list__name">whipped cream</span>
+            <span class="menu-list__price">+$0.50</span>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- =====================================================================
+         FOOTER
+         ===================================================================== -->
+    <footer id="site-footer" class="footer" role="contentinfo">
+      <span>&copy; 2026 kc roast co. all rights reserved.</span>
+      <a href="/privacy.html">privacy</a>
+      <a href="/terms.html">terms</a>
+    </footer>
+
+    <!-- =====================================================================
+         SCRIPTS (DEFERRED)
+         ===================================================================== -->
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/utils.js" defer></script>
+    <script src="/js/header.js" defer></script>
+    <script src="/js/footer.js" defer></script>
+
+  </body>
+</html>

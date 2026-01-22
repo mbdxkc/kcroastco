@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--
+    ============================================================================
+    kc roast co — about page
+    ============================================================================
+    @project    kc roast co case study
+    @version    1.0.0
+    @author     valdez campos <dez@mediabrilliance.io>
+    @date       2026-01-22
+    @file       about.html
+
+    @desc       About page for KC Roast Co. featuring company origin story,
+                mission and values, team member profiles, roastery information,
+                and press recognition.
+
+    @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+
+    @a11y       - WCAG 2.1 AA compliant
+                - Semantic heading hierarchy
+                - Descriptive image alt text
+                - Proper landmark structure
+
+    @perf       - Lazy-loaded images
+                - Preconnect to image CDN
+                - Deferred scripts
+    ============================================================================
+    -->
+
+    <!-- =====================================================================
+         CHARACTER ENCODING & VIEWPORT
+         ===================================================================== -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- =====================================================================
+         SEO & SOCIAL META
+         ===================================================================== -->
+    <title>about | kc roast co</title>
+    <meta name="description" content="Our story: from a garage in Kansas City's Crossroads district to the city's favorite roaster. Meet our team and learn about our commitment to quality." />
+    <meta name="keywords" content="about kc roast co, kansas city roaster, coffee company story, specialty coffee" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://kcroastco.mediaBrilliance.io/about" />
+
+    <!-- open graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="about | kc roast co" />
+    <meta property="og:description" content="Our story: from a garage in Kansas City to the city's favorite roaster." />
+    <meta property="og:url" content="https://kcroastco.mediabrilliance.io/about" />
+    <meta property="og:image" content="https://kcroastco.mediabrilliance.io/og.png" />
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="about | kc roast co" />
+    <meta name="twitter:description" content="Our story: from a garage to KC's favorite roaster." />
+
+    <!-- =====================================================================
+         THEME & ICONS
+         ===================================================================== -->
+    <meta name="theme-color" content="#0F0D0C" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- =====================================================================
+         PRECONNECT & FONTS
+         ===================================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =====================================================================
+         STYLESHEET
+         ===================================================================== -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- =====================================================================
+         STRUCTURED DATA (JSON-LD)
+         ===================================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "KC Roast Co.",
+        "description": "Small-batch specialty coffee roaster in Kansas City's Crossroads district",
+        "foundingDate": "2018",
+        "founders": [
+          {"@type": "Person", "name": "Maria Santos", "jobTitle": "Co-founder & Head Roaster"},
+          {"@type": "Person", "name": "James Mitchell", "jobTitle": "Co-founder & Operations"}
+        ],
+        "numberOfEmployees": {"@type": "QuantitativeValue", "value": "15"}
+      }
+    }
+    </script>
+
+  </head>
+
+  <body>
+    <!-- =====================================================================
+         PAGE TRANSITION & SKIP LINK
+         ===================================================================== -->
+    <div id="page-transition" aria-hidden="true"></div>
+    <a class="skip-link" href="#main-content">skip to main content</a>
+
+    <!-- =====================================================================
+         HEADER
+         ===================================================================== -->
+    <header id="site-header" class="site-header" role="banner"></header>
+
+    <!-- =====================================================================
+         MOBILE MENU
+         ===================================================================== -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true"></nav>
+
+    <!-- =====================================================================
+         MAIN CONTENT
+         ===================================================================== -->
+    <main id="main-content" role="main">
+
+      <!-- =================================================================
+           PAGE HEADER
+           ================================================================= -->
+      <section class="section section__header--page" aria-labelledby="page-title">
+        <div class="container">
+          <h1 id="page-title" class="section__title">our story</h1>
+          <p class="section__subtitle">rooted in kansas city, brewed with intention</p>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           ORIGIN STORY
+           ================================================================= -->
+      <section class="section section--two-col" aria-labelledby="origin-heading">
+        <div class="section__media">
+          <img
+            src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80"
+            alt="Vintage Probat coffee roaster with brass fittings and control dials"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="section__content">
+          <h2 id="origin-heading" class="section__title">how it started</h2>
+          <p class="section__text">
+            KC Roast Co. began in 2018 in a 400-square-foot garage in the Crossroads
+            district. Armed with a secondhand Probat roaster and an obsession with
+            the perfect cup, our founders—Maria and James—started roasting for
+            friends, then farmers markets, then the whole city.
+          </p>
+          <p class="section__text">
+            What started as a side project fueled by late nights and early mornings
+            became Kansas City's go-to roaster. Today, we roast over 2,000 pounds
+            of coffee weekly from our flagship roastery on Main Street.
+          </p>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           MISSION
+           ================================================================= -->
+      <section class="section section--two-col section--reversed" aria-labelledby="mission-heading">
+        <div class="section__media">
+          <img
+            src="https://images.unsplash.com/photo-1524350876685-274059332603?w=800&q=80"
+            alt="Coffee farmer sorting ripe red coffee cherries by hand in Colombia"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="section__content">
+          <h2 id="mission-heading" class="section__title">what we believe</h2>
+          <p class="section__text">
+            Great coffee starts at the source. We work directly with farmers in
+            Ethiopia, Colombia, Guatemala, and beyond—paying premium prices that
+            support sustainable farming and fair wages.
+          </p>
+          <p class="section__text">
+            Every bag we sell can be traced back to the farm where it was grown.
+            We believe transparency builds trust, and trust builds community.
+          </p>
+          <p class="section__text">
+            Our mission is simple: roast exceptional coffee, treat people right,
+            and leave things better than we found them.
+          </p>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           VALUES
+           ================================================================= -->
+      <section class="section section--featured" aria-labelledby="values-heading">
+        <header class="section__header">
+          <h2 id="values-heading" class="section__title">our values</h2>
+          <p class="section__subtitle">the principles that guide everything we do</p>
+        </header>
+
+        <ul class="card-grid" role="list">
+          <li class="card">
+            <div class="card__content">
+              <h3 class="card__title">craft over convenience</h3>
+              <p class="section__text">
+                We roast in small batches, by hand, every single day. There are no
+                shortcuts to great coffee—just care, attention, and a lot of cupping.
+              </p>
+            </div>
+          </li>
+
+          <li class="card">
+            <div class="card__content">
+              <h3 class="card__title">community first</h3>
+              <p class="section__text">
+                Our café is more than a coffee shop—it's a gathering place. We host
+                local artists, support neighborhood causes, and believe in the power
+                of bringing people together.
+              </p>
+            </div>
+          </li>
+
+          <li class="card">
+            <div class="card__content">
+              <h3 class="card__title">sustainable always</h3>
+              <p class="section__text">
+                From compostable packaging to carbon-offset shipping, we're committed
+                to minimizing our footprint. Good coffee shouldn't cost the earth.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           TEAM
+           ================================================================= -->
+      <section class="section" aria-labelledby="team-heading">
+        <header class="section__header">
+          <h2 id="team-heading" class="section__title">meet the team</h2>
+          <p class="section__subtitle">the people behind the beans</p>
+        </header>
+
+        <ul class="card-grid" role="list">
+          <!-- Maria Santos -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
+                alt="Portrait of Maria Santos, co-founder and head roaster"
+                width="400"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">maria santos</h3>
+              <p class="card__desc">co-founder & head roaster</p>
+              <p class="card__meta">
+                Former chemical engineer turned coffee obsessive. Maria oversees
+                all roasting operations and sourcing relationships.
+              </p>
+            </div>
+          </li>
+
+          <!-- James Mitchell -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+                alt="Portrait of James Mitchell, co-founder and operations lead"
+                width="400"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">james mitchell</h3>
+              <p class="card__desc">co-founder & operations</p>
+              <p class="card__meta">
+                The business brain behind KC Roast Co. James handles everything
+                from logistics to late-night spreadsheets.
+              </p>
+            </div>
+          </li>
+
+          <!-- Sarah Kim -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+                alt="Portrait of Sarah Kim, café manager"
+                width="400"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">sarah kim</h3>
+              <p class="card__desc">café manager</p>
+              <p class="card__meta">
+                SCA-certified barista and latte art champion. Sarah trains our
+                team and keeps the café running smoothly.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           ROASTERY VISIT
+           ================================================================= -->
+      <section class="section section--two-col" aria-labelledby="roastery-heading">
+        <div class="section__media">
+          <img
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
+            alt="Interior of KC Roast Co. roastery with coffee equipment and seating"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="section__content">
+          <h2 id="roastery-heading" class="section__title">visit the roastery</h2>
+          <p class="section__text">
+            Want to see where the magic happens? Our Main Street location features
+            a full view of our roasting operation. Watch beans transform from green
+            to golden while you sip your morning brew.
+          </p>
+          <p class="section__text">
+            We offer free roastery tours every Saturday at 10am. No reservation
+            needed—just show up curious.
+          </p>
+          <a href="/contact.html" class="btn btn--primary">plan your visit</a>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           PRESS / RECOGNITION
+           ================================================================= -->
+      <section class="section section--testimonials" aria-labelledby="press-heading">
+        <div class="newsletter">
+          <h2 id="press-heading" class="newsletter__title">as seen in</h2>
+          <p class="newsletter__text">
+            "The best coffee in Kansas City, bar none." — <em>Kansas City Star</em><br />
+            "A Crossroads gem worth the pilgrimage." — <em>Midwest Living</em><br />
+            "Small-batch perfection." — <em>Food & Wine</em>
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- =====================================================================
+         FOOTER
+         ===================================================================== -->
+    <footer id="site-footer" class="footer" role="contentinfo">
+      <span>&copy; 2026 kc roast co. all rights reserved.</span>
+      <a href="/privacy.html">privacy</a>
+      <a href="/terms.html">terms</a>
+    </footer>
+
+    <!-- =====================================================================
+         SCRIPTS (DEFERRED)
+         ===================================================================== -->
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/utils.js" defer></script>
+    <script src="/js/header.js" defer></script>
+    <script src="/js/footer.js" defer></script>
+
+  </body>
+</html>

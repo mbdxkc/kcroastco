@@ -1,154 +1,264 @@
 <!doctype html>
 <html lang="en">
   <head>
-  <!--
-  ============================================================================
-  kc roast co case study
-  ============================================================================
-  @project    kc roast co
-  @version    0.2
-  @author     valdez campos <dez@mediabrilliance.io>
-  @date       2026-10-19
-  @file       index.html
-  @desc       website for a fictional kansas city cafe and roaster
-  @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
-  @requires   - /js/header.js, /js/footer.js, /js/page-transition.js
-              - /style.css
-  @a11y       - skip link, semantic html, wcag 2.1 aa compliant
-  ============================================================================
-  -->
+    <!--
+    ============================================================================
+    kc roast co — home page
+    ============================================================================
+    @project    kc roast co case study
+    @version    1.0.0
+    @author     valdez campos <dez@mediabrilliance.io>
+    @date       2026-01-22
+    @file       index.html
 
-    <!-- core meta -->
+    @desc       Landing page for KC Roast Co., a fictional Kansas City café
+                and specialty coffee roaster. Features hero section, about
+                preview, featured products, menu preview, testimonials,
+                location info, and newsletter signup.
+
+    @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+
+    @requires   - /style.css (main stylesheet)
+                - /js/header.js (header component injection)
+                - /js/footer.js (footer component injection)
+                - /js/page-transition.js (page transition animations)
+                - /js/utils.js (utility functions)
+
+    @a11y       - WCAG 2.1 AA compliant
+                - Skip link for keyboard navigation
+                - Semantic HTML5 structure
+                - ARIA landmarks and labels
+                - Proper heading hierarchy (h1 > h2 > h3)
+                - Alt text on all images
+                - Focus-visible states
+
+    @perf       - Critical fonts preloaded
+                - Images lazy-loaded below fold
+                - Deferred non-critical JS
+                - Preconnect to external origins
+    ============================================================================
+    -->
+
+    <!-- =====================================================================
+         CHARACTER ENCODING & VIEWPORT
+         ===================================================================== -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0F0D0C" />
 
-    <title>kc roast co</title>
-    <meta name="description" content="kc's finest roaster" />
+    <!-- =====================================================================
+         SEO & SOCIAL META
+         ===================================================================== -->
+    <title>kc roast co | kansas city's finest coffee roaster</title>
+    <meta name="description" content="Small-batch specialty coffee roasted in Kansas City. Visit our Crossroads café or shop our single-origin beans and signature blends online." />
+    <meta name="keywords" content="kansas city coffee, specialty coffee, coffee roaster, crossroads KC, small batch coffee" />
+    <meta name="author" content="kc roast co" />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://kcroastco.mediaBrilliance.io/" />
 
-    <!-- social / previews -->
-    <meta property="og:title" content="kc roast co" />
-    <meta property="og:description" content="kc's finest roaster" />
+    <!-- open graph (facebook, linkedin) -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="kc roast co" />
+    <meta property="og:title" content="kc roast co | kansas city's finest coffee roaster" />
+    <meta property="og:description" content="Small-batch specialty coffee roasted in Kansas City. Visit our Crossroads café or shop online." />
     <meta property="og:url" content="https://kcroastco.mediabrilliance.io/" />
-    <meta property="og:image" content="/og.png" />
+    <meta property="og:image" content="https://kcroastco.mediabrilliance.io/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
 
+    <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="kc roast co" />
-    <meta name="twitter:description" content="kc's finest roaster" />
-    <meta name="twitter:image" content="/og.png" />
+    <meta name="twitter:site" content="@kcroastco" />
+    <meta name="twitter:title" content="kc roast co | kansas city's finest coffee roaster" />
+    <meta name="twitter:description" content="Small-batch specialty coffee roasted in Kansas City." />
+    <meta name="twitter:image" content="https://kcroastco.mediabrilliance.io/og.png" />
 
-    <!-- icons -->
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- =====================================================================
+         THEME & ICONS
+         ===================================================================== -->
+    <meta name="theme-color" content="#0F0D0C" />
+    <meta name="msapplication-TileColor" content="#0F0D0C" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- =====================================================================
+         PRECONNECT & PRELOAD (PERFORMANCE)
+         ===================================================================== -->
+    <!-- preconnect to font origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- preconnect to image CDN -->
+    <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!-- preload critical fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&display=swap"
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;700&display=swap"
+      as="style"
+    />
+
+    <!-- =====================================================================
+         STYLESHEETS
+         ===================================================================== -->
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- styles -->
+    <!-- main stylesheet -->
     <link rel="stylesheet" href="/style.css" />
+
+    <!-- =====================================================================
+         STRUCTURED DATA (JSON-LD)
+         Schema.org markup for rich search results
+         ===================================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "name": "KC Roast Co.",
+      "description": "Small-batch specialty coffee roasted in Kansas City's Crossroads district.",
+      "url": "https://kcroastco.mediabrilliance.io",
+      "logo": "https://kcroastco.mediabrilliance.io/images/kcroastco_logo.svg",
+      "image": "https://kcroastco.mediabrilliance.io/og.png",
+      "telephone": "+1-816-555-1234",
+      "email": "hello@kcroastco.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1814 Main Street",
+        "addressLocality": "Kansas City",
+        "addressRegion": "MO",
+        "postalCode": "64108",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 39.0997,
+        "longitude": -94.5866
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "06:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "07:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ],
+      "priceRange": "$$",
+      "servesCuisine": "Coffee",
+      "sameAs": [
+        "https://www.instagram.com/kcroastco/",
+        "https://twitter.com/kcroastco",
+        "https://www.facebook.com/kcroastco"
+      ]
+    }
+    </script>
 
   </head>
 
   <body>
-    <!-- =====================================================
-         page transition + skip link
-         ===================================================== -->
+    <!-- =====================================================================
+         PAGE TRANSITION OVERLAY
+         Provides smooth transitions between pages (controlled via JS)
+         ===================================================================== -->
     <div id="page-transition" aria-hidden="true"></div>
-    <a class="skip-link" href="#main_container">skip to main content</a>
 
-    <!-- =====================================================
-         header (injected by JS)
-         ===================================================== -->
-    <header id="site-header" class="site-header" role="banner"></header>
+    <!-- =====================================================================
+         SKIP LINK (ACCESSIBILITY)
+         Allows keyboard users to skip navigation and jump to main content
+         ===================================================================== -->
+    <a class="skip-link" href="#main-content">skip to main content</a>
 
-    <!-- mobile menu -->
-    <div class="mobile-menu" aria-label="mobile navigation">
-      <!-- mobile nav links injected by JS -->
-    </div>
+    <!-- =====================================================================
+         SITE HEADER
+         Navigation and branding - injected by /js/header.js
+         ===================================================================== -->
+    <header id="site-header" class="site-header" role="banner">
+      <!-- Header content injected via JavaScript -->
+    </header>
 
-    <!-- =====================================================
-         main
-         ===================================================== -->
-    <main id="main_container">
+    <!-- =====================================================================
+         MOBILE MENU
+         Off-canvas navigation for mobile devices
+         ===================================================================== -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+      <!-- Mobile nav links injected by JS -->
+    </nav>
 
-      <!-- =====================================================
-           hero section (single column centered)
-           ===================================================== -->
-          <section class="hero hero-carousel">
+    <!-- =====================================================================
+         MAIN CONTENT
+         Primary page content with semantic landmark
+         ===================================================================== -->
+    <main id="main-content" role="main">
 
-          <!-- slide 1 -->
-          <article class="hero-slide is-active">
+      <!-- =================================================================
+           HERO SECTION
+           Full-viewport hero with background image, headline, and CTAs
+           ================================================================= -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__content">
+          <h1 id="hero-title" class="hero__title">coffee, crafted together</h1>
+          <p class="hero__tagline">
+            small-batch roasting. intentional brewing. community first.
+          </p>
+          <div class="hero__cta-group">
+            <a href="/menu.html" class="btn btn--primary">view menu</a>
+            <a href="/contact.html" class="btn btn--outline">visit us</a>
+          </div>
+        </div>
+      </section>
 
-            <div class="hero-slide__media">
-              <img
-                src="/images/photo-1495474472287-4d71bcdd2085.jpg"
-                alt="friends sharing coffee with latte art"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-
-            <div class="hero-slide__overlay"></div>
-
-            <div class="hero__content">
-              <h1 class="hero__title">coffee, crafted together</h1>
-
-              <p class="hero__tagline">
-                small-batch roasting. intentional brewing. community first.
-              </p>
-
-              <div class="hero__cta-group">
-                <a href="/menu.html" class="btn btn--primary">view menu</a>
-                <a href="/location.html" class="btn btn--outline">visit us</a>
-              </div>
-            </div>
-
-          </article>
-
-        </section>
-
-
-      <!-- =====================================================
-           intro / about (two column)
-           ===================================================== -->
+      <!-- =================================================================
+           ABOUT / INTRO SECTION
+           Two-column layout introducing the brand story
+           ================================================================= -->
       <section class="section section--two-col" aria-labelledby="about-heading">
         <div class="section__media">
-          <img 
-            src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80" 
-            alt="vintage probat coffee roaster in our kansas city roastery" 
+          <img
+            src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80"
+            alt="Vintage Probat coffee roaster with brass fittings in our Kansas City roastery"
+            width="800"
+            height="600"
             loading="lazy"
+            decoding="async"
           />
         </div>
         <div class="section__content">
           <h2 id="about-heading" class="section__title">our story</h2>
           <p class="section__text">
-            Born in the heart of Kansas City's Crossroads district, KC Roast Co. 
-            started with a simple dream: to bring world-class coffee to the midwest. 
-            Every batch is roasted by hand in our flagship roastery, where craft 
+            Born in the heart of Kansas City's Crossroads district, KC Roast Co.
+            started with a simple dream: to bring world-class coffee to the midwest.
+            Every batch is roasted by hand in our flagship roastery, where craft
             meets community.
           </p>
           <p class="section__text">
-            We source our beans directly from farmers in Ethiopia, Colombia, and 
-            Guatemala—building relationships that ensure fair wages and sustainable 
+            We source our beans directly from farmers in Ethiopia, Colombia, and
+            Guatemala—building relationships that ensure fair wages and sustainable
             practices.
           </p>
-          <a href="/about" class="link link--arrow">learn more about us</a>
+          <a href="/about.html" class="link link--arrow">learn more about us</a>
         </div>
       </section>
 
-      <!-- =====================================================
-           featured coffees (full width grid)
-           ===================================================== -->
+      <!-- =================================================================
+           FEATURED PRODUCTS SECTION
+           Grid of featured coffee products with cards
+           ================================================================= -->
       <section class="section section--featured" aria-labelledby="featured-heading">
         <header class="section__header">
           <h2 id="featured-heading" class="section__title">featured roasts</h2>
@@ -156,13 +266,16 @@
         </header>
 
         <ul class="card-grid" role="list">
-          <!-- card 1 -->
+          <!-- Product Card: Ethiopian Yirgacheffe -->
           <li class="card">
             <div class="card__image">
-              <img 
-                src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80" 
-                alt="bag of ethiopian yirgacheffe coffee beans" 
+              <img
+                src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80"
+                alt="12oz bag of Ethiopian Yirgacheffe light roast coffee beans"
+                width="600"
+                height="600"
                 loading="lazy"
+                decoding="async"
               />
               <span class="card__badge">bestseller</span>
             </div>
@@ -172,18 +285,21 @@
               <p class="card__meta">light roast · single origin</p>
               <p class="card__price">$18.00 <span class="card__unit">/ 12oz</span></p>
             </div>
-            <a href="/shop/ethiopian-yirgacheffe" class="card__link">
+            <a href="/shop.html" class="card__link" aria-label="Shop Ethiopian Yirgacheffe coffee">
               <span class="sr-only">shop ethiopian yirgacheffe</span>
             </a>
           </li>
 
-          <!-- card 2 -->
+          <!-- Product Card: Colombian Supremo -->
           <li class="card">
             <div class="card__image">
-              <img 
-                src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80" 
-                alt="bag of colombian supremo coffee beans" 
+              <img
+                src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80"
+                alt="12oz bag of Colombian Supremo medium roast coffee beans"
+                width="600"
+                height="600"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="card__content">
@@ -192,18 +308,21 @@
               <p class="card__meta">medium roast · single origin</p>
               <p class="card__price">$16.00 <span class="card__unit">/ 12oz</span></p>
             </div>
-            <a href="/shop/colombian-supremo" class="card__link">
+            <a href="/shop.html" class="card__link" aria-label="Shop Colombian Supremo coffee">
               <span class="sr-only">shop colombian supremo</span>
             </a>
           </li>
 
-          <!-- card 3 -->
+          <!-- Product Card: Crossroads Blend -->
           <li class="card">
             <div class="card__image">
-              <img 
-                src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=600&q=80" 
-                alt="bag of crossroads blend coffee" 
+              <img
+                src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=600&q=80"
+                alt="12oz bag of Crossroads Blend dark roast signature coffee"
+                width="600"
+                height="600"
                 loading="lazy"
+                decoding="async"
               />
               <span class="card__badge">house blend</span>
             </div>
@@ -213,80 +332,90 @@
               <p class="card__meta">dark roast · signature blend</p>
               <p class="card__price">$15.00 <span class="card__unit">/ 12oz</span></p>
             </div>
-            <a href="/shop/crossroads-blend" class="card__link">
+            <a href="/shop.html" class="card__link" aria-label="Shop Crossroads Blend coffee">
               <span class="sr-only">shop crossroads blend</span>
             </a>
           </li>
         </ul>
 
         <div class="section__cta">
-          <a href="/shop" class="btn btn--outline">shop all coffees</a>
+          <a href="/shop.html" class="btn btn--outline">shop all coffees</a>
         </div>
       </section>
 
-      <!-- =====================================================
-           cafe menu preview (two column - reversed)
-           ===================================================== -->
+      <!-- =================================================================
+           MENU PREVIEW SECTION
+           Two-column layout with menu highlights
+           ================================================================= -->
       <section class="section section--two-col section--reversed" aria-labelledby="menu-heading">
         <div class="section__media">
-          <img 
-            src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=800&q=80" 
-            alt="barista pouring latte art into a ceramic cup" 
+          <img
+            src="https://images.unsplash.com/photo-1534778101976-62847782c213?w=800&q=80"
+            alt="Barista carefully pouring steamed milk to create latte art in a ceramic cup"
+            width="800"
+            height="600"
             loading="lazy"
+            decoding="async"
           />
         </div>
         <div class="section__content">
-          <h2 id="menu-heading" class="section__title">café menu</h2>
+          <h2 id="menu-heading" class="section__title">cafe menu</h2>
           <p class="section__text">
-            From classic espresso drinks to seasonal specialties, our café serves 
-            up Kansas City's finest brews. Pair your coffee with fresh-baked 
+            From classic espresso drinks to seasonal specialties, our cafe serves
+            up Kansas City's finest brews. Pair your coffee with fresh-baked
             pastries from our partner bakery.
           </p>
-          
-          <ul class="menu-preview">
+
+          <!-- Menu preview list with prices -->
+          <ul class="menu-preview" role="list">
             <li class="menu-preview__item">
               <span class="menu-preview__name">espresso</span>
-              <span class="menu-preview__dots"></span>
+              <span class="menu-preview__dots" aria-hidden="true"></span>
               <span class="menu-preview__price">$3.50</span>
             </li>
             <li class="menu-preview__item">
               <span class="menu-preview__name">americano</span>
-              <span class="menu-preview__dots"></span>
+              <span class="menu-preview__dots" aria-hidden="true"></span>
               <span class="menu-preview__price">$4.00</span>
             </li>
             <li class="menu-preview__item">
               <span class="menu-preview__name">cortado</span>
-              <span class="menu-preview__dots"></span>
+              <span class="menu-preview__dots" aria-hidden="true"></span>
               <span class="menu-preview__price">$4.50</span>
             </li>
             <li class="menu-preview__item">
               <span class="menu-preview__name">lavender latte</span>
-              <span class="menu-preview__dots"></span>
+              <span class="menu-preview__dots" aria-hidden="true"></span>
               <span class="menu-preview__price">$6.00</span>
             </li>
           </ul>
 
-          <a href="/menu" class="link link--arrow">view full menu</a>
+          <a href="/menu.html" class="link link--arrow">view full menu</a>
         </div>
       </section>
 
-      <!-- =====================================================
-           testimonials (full width)
-           ===================================================== -->
+      <!-- =================================================================
+           TESTIMONIALS SECTION
+           Customer quote with attribution
+           ================================================================= -->
       <section class="section section--testimonials" aria-labelledby="testimonials-heading">
         <h2 id="testimonials-heading" class="sr-only">customer testimonials</h2>
-        
+
         <figure class="testimonial">
           <blockquote class="testimonial__quote">
-            <p>"The best coffee in KC, hands down. The Crossroads Blend is my daily 
+            <p>"The best coffee in KC, hands down. The Crossroads Blend is my daily
             ritual—bold enough to wake me up, smooth enough to savor."</p>
           </blockquote>
           <figcaption class="testimonial__author">
-            <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" 
-              alt="" 
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80"
+              alt=""
               class="testimonial__avatar"
+              width="64"
+              height="64"
               loading="lazy"
+              decoding="async"
+              aria-hidden="true"
             />
             <span class="testimonial__name">Marcus Johnson</span>
             <span class="testimonial__location">Westport, KC</span>
@@ -294,13 +423,15 @@
         </figure>
       </section>
 
-      <!-- =====================================================
-           location & hours (two column)
-           ===================================================== -->
+      <!-- =================================================================
+           LOCATION & HOURS SECTION
+           Two-column layout with address, hours, contact, and map
+           ================================================================= -->
       <section class="section section--two-col section--location" aria-labelledby="location-heading">
         <div class="section__content">
           <h2 id="location-heading" class="section__title">visit us</h2>
-          
+
+          <!-- Address -->
           <address class="location-info">
             <p class="location-info__address">
               <strong>kc roast co — crossroads</strong><br />
@@ -309,26 +440,28 @@
             </p>
           </address>
 
+          <!-- Hours of operation -->
           <dl class="hours">
             <dt class="hours__label">weekdays</dt>
             <dd class="hours__value">6am – 7pm</dd>
-            
+
             <dt class="hours__label">saturday</dt>
             <dd class="hours__value">7am – 8pm</dd>
-            
+
             <dt class="hours__label">sunday</dt>
             <dd class="hours__value">8am – 5pm</dd>
           </dl>
 
+          <!-- Contact links -->
           <div class="contact-links">
             <a href="tel:+18165551234" class="link link--icon">
-              <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
               (816) 555-1234
             </a>
             <a href="mailto:hello@kcroastco.com" class="link link--icon">
-              <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                 <polyline points="22,6 12,13 2,6"/>
               </svg>
@@ -337,8 +470,9 @@
           </div>
         </div>
 
+        <!-- Embedded Google Map -->
         <div class="section__media section__media--map">
-          <iframe 
+          <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3097.123456789!2d-94.5866!3d39.0997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDA1JzU5LjAiTiA5NMKwMzUnMTEuOCJX!5e0!3m2!1sen!2sus!4v1234567890"
             width="600"
             height="450"
@@ -346,39 +480,41 @@
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="kc roast co location on google maps"
+            title="KC Roast Co. location at 1814 Main Street, Kansas City on Google Maps"
           ></iframe>
         </div>
       </section>
 
-      <!-- =====================================================
-           newsletter signup (full width)
-           ===================================================== -->
+      <!-- =================================================================
+           NEWSLETTER SECTION
+           Email signup form with privacy disclaimer
+           ================================================================= -->
       <section class="section section--newsletter" aria-labelledby="newsletter-heading">
         <div class="newsletter">
           <h2 id="newsletter-heading" class="newsletter__title">stay caffeinated</h2>
           <p class="newsletter__text">
-            Get first dibs on new roasts, subscriber-only discounts, and brewing tips 
+            Get first dibs on new roasts, subscriber-only discounts, and brewing tips
             delivered straight to your inbox.
           </p>
-          
-          <form class="newsletter__form" action="/api/subscribe" method="POST">
+
+          <form class="newsletter__form" action="/api/subscribe" method="POST" novalidate>
             <div class="form-group">
-              <label for="email" class="sr-only">email address</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                class="form-input" 
+              <label for="newsletter-email" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="newsletter-email"
+                name="email"
+                class="form-input"
                 placeholder="your@email.com"
                 autocomplete="email"
                 required
+                aria-describedby="newsletter-disclaimer"
               />
               <button type="submit" class="btn btn--primary">subscribe</button>
             </div>
-            <p class="newsletter__disclaimer">
-              No spam, ever. Unsubscribe anytime. 
-              <a href="/privacy">Privacy policy</a>
+            <p id="newsletter-disclaimer" class="newsletter__disclaimer">
+              No spam, ever. Unsubscribe anytime.
+              <a href="/privacy.html">Privacy policy</a>
             </p>
           </form>
         </div>
@@ -386,18 +522,20 @@
 
     </main>
 
-    <!-- =====================================================
-         footer injected by js
-         ===================================================== -->
+    <!-- =====================================================================
+         SITE FOOTER
+         Copyright, legal links - could be injected by /js/footer.js
+         ===================================================================== -->
     <footer id="site-footer" class="footer" role="contentinfo">
       <span>&copy; 2026 kc roast co. all rights reserved.</span>
-      <a href="/privacy">privacy</a>
-      <a href="/terms">terms</a>
+      <a href="/privacy.html">privacy</a>
+      <a href="/terms.html">terms</a>
     </footer>
 
-    <!-- =====================================================
-         scripts
-         ===================================================== -->
+    <!-- =====================================================================
+         SCRIPTS
+         Deferred for performance - non-blocking page render
+         ===================================================================== -->
     <script src="/js/page-transition.js" defer></script>
     <script src="/js/utils.js" defer></script>
     <script src="/js/header.js" defer></script>

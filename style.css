@@ -1,26 +1,86 @@
-/* =========================================================
-   kc roast co stylesheet
-   design. code. clarity.
-   ========================================================= */
+/**
+ * ============================================================================
+ * kc roast co — Main Stylesheet
+ * ============================================================================
+ *
+ * @project    kc roast co case study
+ * @version    1.0.0
+ * @author     Valdez Campos <dez@mediabrilliance.io>
+ * @date       2026-01-22
+ * @file       /style.css
+ *
+ * @desc       Complete stylesheet for KC Roast Co. website featuring:
+ *             - CSS custom properties (design tokens)
+ *             - Modern CSS reset
+ *             - Responsive layout system
+ *             - Component styles (cards, buttons, forms)
+ *             - Utility classes
+ *
+ * @structure  Table of Contents:
+ *             1)  Design Tokens (CSS Variables)
+ *             2)  Reset & Global Guards
+ *             3)  Accessibility Utilities
+ *             4)  Page Transitions
+ *             5)  Typography
+ *             6)  Layout Primitives (Header, Container)
+ *             7)  Images
+ *             8)  Buttons
+ *             9)  Links
+ *             10) Footer
+ *             11) Hero Section
+ *             12-18) Section Variants
+ *             19) Menu Components
+ *             20) Testimonials
+ *             21) Location & Hours
+ *             22) Newsletter
+ *             23) Form Elements
+ *             24-35) Utilities & Misc
+ *
+ * @fonts      - Fraunces (display headings)
+ *             - Nunito Sans (body text)
+ *
+ * @colors     Dark coffee-shop palette with warm accents
+ *             Primary: #C4A77D (golden/caramel)
+ *             Background: #0F0D0C (near black)
+ *
+ * @breakpoints
+ *             - Mobile: < 768px
+ *             - Desktop: >= 768px
+ *
+ * @a11y       - Focus-visible states
+ *             - Reduced motion support
+ *             - Screen reader utilities
+ *             - Sufficient color contrast
+ *
+ * ============================================================================
+ */
 
 
 /* =========================================================
-   1) design tokens
+   1) DESIGN TOKENS (CSS Custom Properties)
+   =========================================================
+   Centralized design values for consistent theming.
+   Modify these to update the entire color scheme.
    ========================================================= */
-:root{
-  /* colors - coffee shop palette */
-  --bg:           #0F0D0C;
-  --bg-warm:      #1A1615;
-  --bg-card:      rgba(255,245,235,.03);
-  --text:         rgba(255,250,245,.9);
-  --muted:        rgba(255,250,245,.6);
+:root {
+  /* ---------------------------------------------------------
+     Colors - Coffee Shop Palette
+     --------------------------------------------------------- */
+  --bg:           #0F0D0C;              /* Main background (near black) */
+  --bg-warm:      #1A1615;              /* Warm background variant */
+  --bg-card:      rgba(255,245,235,.03); /* Subtle card background */
+  --text:         rgba(255,250,245,.9);  /* Primary text (off-white) */
+  --muted:        rgba(255,250,245,.6);  /* Secondary/muted text */
 
-:root{
-  /* fonts - artisanal */
+  /* ---------------------------------------------------------
+     Typography
+     --------------------------------------------------------- */
   --font-body: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Fraunces", serif;
-}
 
+  /* ---------------------------------------------------------
+     Brand Accents
+     --------------------------------------------------------- */
   /* brand accents */
   --accent-primary:   #C4A77D;
   --accent-secondary: #8B5A2B;
@@ -293,6 +353,7 @@ blockquote{
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  padding: 0 1.5rem;
   height: 100%;
 }
 
@@ -308,8 +369,26 @@ blockquote{
 .nav-left-section{
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   justify-self: start;
+  padding-left: 0.5rem;
+}
+
+.nav-left-section a{
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: lowercase;
+  letter-spacing: .02em;
+  transition: color var(--t-fast) ease;
+}
+
+.nav-left-section a:hover{
+  color: var(--text);
+}
+
+.nav-left-section a.is-active{
+  color: var(--accent-primary);
 }
 
 .nav .pages,
@@ -347,7 +426,8 @@ blockquote{
 .nav .socials{
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  padding-right: 0.5rem;
 }
 
 /* give the social link a real box */
@@ -360,12 +440,12 @@ blockquote{
   color: var(--muted);
 }
 
-/* size the SVG explicitly */
+/* size the SVG/img explicitly */
 .nav-link--social .icon,
-.nav-link--social svg{
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
+.nav-link--social svg,
+.nav-link--social img{
+  width: 20px;
+  height: 20px;
 }
 
 /* hover behavior */
@@ -421,19 +501,14 @@ blockquote{
 }
 
 
-@media (min-width: 768px){
-  .nav-toggle{
-    display: none !important;
-  }
-}
 
 /* =========================================================
    responsive header behavior
    ========================================================= */
 
-/* mobile first: hide desktop links */
+/* mobile: hide desktop links, show hamburger */
 @media (max-width: 767px){
-  .nav-left-section.pages{
+  .nav-left-section{
     display: none;
   }
 
@@ -443,13 +518,6 @@ blockquote{
 
   .nav-toggle{
     display: inline-flex;
-  }
-}
-
-/* desktop: hide toggle */
-@media (min-width: 768px){
-  .nav-toggle{
-    display: none;
   }
 }
 
@@ -1103,6 +1171,113 @@ figure{
 
 
 /* =========================================================
+   19b) menu list (full menu page)
+   ========================================================= */
+.menu-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.menu-list__item{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255,250,245,.08);
+}
+
+.menu-list__item:last-child{
+  border-bottom: none;
+}
+
+.menu-list__item--featured{
+  background: rgba(196,167,125,.05);
+  margin: 0 -1rem;
+  padding: 1.25rem 1rem;
+  border-radius: var(--radius-sm);
+  border-bottom: none;
+  margin-bottom: .5rem;
+}
+
+.menu-list__details{
+  flex: 1;
+}
+
+.menu-list__name{
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--text);
+  display: block;
+  margin-bottom: .25rem;
+}
+
+.menu-list__desc{
+  font-size: .875rem;
+  color: var(--muted);
+  display: block;
+}
+
+.menu-list__price{
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--accent-primary);
+  white-space: nowrap;
+}
+
+.menu-list--compact .menu-list__item{
+  padding: .75rem 0;
+}
+
+.menu-list--compact .menu-list__name{
+  font-size: .9375rem;
+}
+
+.menu-list--compact .menu-list__price{
+  font-size: .9375rem;
+}
+
+
+/* =========================================================
+   19c) page header
+   ========================================================= */
+.section__header--page{
+  text-align: center;
+  padding: 4rem 1.5rem 2rem;
+  background: linear-gradient(
+    180deg,
+    var(--bg-warm) 0%,
+    var(--bg) 100%
+  );
+}
+
+.section__header--page .section__title{
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: .5rem;
+}
+
+.section__header--page .section__subtitle{
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   19d) contact form
+   ========================================================= */
+.contact-form{
+  margin-top: 2rem;
+}
+
+.contact-form .form-group{
+  margin-bottom: 1.5rem;
+}
+
+
+/* =========================================================
    20) testimonial
    ========================================================= */
 .testimonial{
@@ -1734,7 +1909,50 @@ figure{
 .icon-sm{ width: .875rem; height: .875rem; }
 .icon-md{ width: 1.25rem; height: 1.25rem; }
 .icon-lg{ width: 1.5rem; height: 1.5rem; }
-.icon-xl
+.icon-xl{ width: 2rem; height: 2rem; }
+
+
+/* =========================================================
+   35) header hover image effects
+   ========================================================= */
+
+/* logo hover swap */
+.header-title a{
+  display: block;
+}
+
+.header-title .logo-default{
+  display: block;
+}
+
+.header-title .logo-hover{
+  display: none;
+}
+
+.header-title a:hover .logo-default{
+  display: none;
+}
+
+.header-title a:hover .logo-hover{
+  display: block;
+}
+
+/* social icon hover swap */
+.nav-link--social .icon-default{
+  display: block;
+}
+
+.nav-link--social .icon-hover{
+  display: none;
+}
+
+.nav-link--social:hover .icon-default{
+  display: none;
+}
+
+.nav-link--social:hover .icon-hover{
+  display: block;
+}
 
 /* =========================================================
    end of style.css

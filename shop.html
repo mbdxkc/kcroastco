@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--
+    ============================================================================
+    kc roast co — shop page
+    ============================================================================
+    @project    kc roast co case study
+    @version    1.0.0
+    @author     valdez campos <dez@mediabrilliance.io>
+    @date       2026-01-22
+    @file       shop.html
+
+    @desc       Online shop for KC Roast Co. featuring single-origin coffees,
+                signature blends, cold brew, merchandise, and subscription CTA.
+                Product cards link to individual product pages.
+
+    @license    proprietary - (c) 2026 mediaBrilliance. all rights reserved.
+
+    @a11y       - WCAG 2.1 AA compliant
+                - Product cards with descriptive alt text
+                - Screen reader friendly pricing
+                - Keyboard accessible card links
+
+    @perf       - Lazy-loaded product images
+                - Preconnect to image CDN
+                - Deferred scripts
+    ============================================================================
+    -->
+
+    <!-- =====================================================================
+         CHARACTER ENCODING & VIEWPORT
+         ===================================================================== -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- =====================================================================
+         SEO & SOCIAL META
+         ===================================================================== -->
+    <title>shop coffee | kc roast co</title>
+    <meta name="description" content="Shop our small-batch roasted coffee beans. Single-origin Ethiopian, Colombian, Kenyan coffees and signature blends. Free shipping on orders over $40." />
+    <meta name="keywords" content="buy coffee online, specialty coffee beans, single origin coffee, coffee subscription" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://kcroastco.mediaBrilliance.io/shop" />
+
+    <!-- open graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="shop coffee | kc roast co" />
+    <meta property="og:description" content="Shop our small-batch roasted coffee beans. Single-origin and signature blends." />
+    <meta property="og:url" content="https://kcroastco.mediabrilliance.io/shop" />
+    <meta property="og:image" content="https://kcroastco.mediabrilliance.io/og.png" />
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="shop coffee | kc roast co" />
+    <meta name="twitter:description" content="Shop our small-batch roasted coffee beans." />
+
+    <!-- =====================================================================
+         THEME & ICONS
+         ===================================================================== -->
+    <meta name="theme-color" content="#0F0D0C" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- =====================================================================
+         PRECONNECT & FONTS
+         ===================================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =====================================================================
+         STYLESHEET
+         ===================================================================== -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- =====================================================================
+         STRUCTURED DATA (JSON-LD)
+         ===================================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "KC Roast Co. Online Shop",
+      "description": "Small-batch roasted coffee beans shipped nationwide",
+      "url": "https://kcroastco.mediabrilliance.io/shop",
+      "priceRange": "$$",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Coffee Beans",
+        "itemListElement": [
+          {
+            "@type": "Product",
+            "name": "Ethiopian Yirgacheffe",
+            "description": "Light roast, bright floral citrus notes",
+            "offers": {"@type": "Offer", "price": "18.00", "priceCurrency": "USD"}
+          }
+        ]
+      }
+    }
+    </script>
+
+  </head>
+
+  <body>
+    <!-- =====================================================================
+         PAGE TRANSITION & SKIP LINK
+         ===================================================================== -->
+    <div id="page-transition" aria-hidden="true"></div>
+    <a class="skip-link" href="#main-content">skip to main content</a>
+
+    <!-- =====================================================================
+         HEADER
+         ===================================================================== -->
+    <header id="site-header" class="site-header" role="banner"></header>
+
+    <!-- =====================================================================
+         MOBILE MENU
+         ===================================================================== -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true"></nav>
+
+    <!-- =====================================================================
+         MAIN CONTENT
+         ===================================================================== -->
+    <main id="main-content" role="main">
+
+      <!-- =================================================================
+           PAGE HEADER
+           ================================================================= -->
+      <section class="section section__header--page" aria-labelledby="page-title">
+        <div class="container">
+          <h1 id="page-title" class="section__title">shop coffee</h1>
+          <p class="section__subtitle">small-batch roasted in kansas city</p>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           SINGLE ORIGINS
+           ================================================================= -->
+      <section class="section" aria-labelledby="origins-heading">
+        <header class="section__header">
+          <h2 id="origins-heading" class="section__title">single origins</h2>
+          <p class="section__subtitle">traceable beans from our partner farms</p>
+        </header>
+
+        <ul class="card-grid" role="list">
+          <!-- Ethiopian Yirgacheffe -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80"
+                alt="12oz bag of Ethiopian Yirgacheffe light roast coffee"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="card__badge">bestseller</span>
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">ethiopian yirgacheffe</h3>
+              <p class="card__desc">bright, floral, citrus notes</p>
+              <p class="card__meta">light roast · washed process</p>
+              <p class="card__price">$18.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/ethiopian-yirgacheffe" class="card__link" aria-label="Shop Ethiopian Yirgacheffe, $18 for 12oz">
+              <span class="sr-only">shop ethiopian yirgacheffe</span>
+            </a>
+          </li>
+
+          <!-- Colombian Supremo -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80"
+                alt="12oz bag of Colombian Supremo medium roast coffee"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">colombian supremo</h3>
+              <p class="card__desc">caramel, nutty, smooth finish</p>
+              <p class="card__meta">medium roast · washed process</p>
+              <p class="card__price">$16.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/colombian-supremo" class="card__link" aria-label="Shop Colombian Supremo, $16 for 12oz">
+              <span class="sr-only">shop colombian supremo</span>
+            </a>
+          </li>
+
+          <!-- Guatemala Antigua -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600&q=80"
+                alt="12oz bag of Guatemala Antigua medium-dark roast coffee"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">guatemala antigua</h3>
+              <p class="card__desc">chocolate, spice, full body</p>
+              <p class="card__meta">medium-dark roast · washed process</p>
+              <p class="card__price">$17.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/guatemala-antigua" class="card__link" aria-label="Shop Guatemala Antigua, $17 for 12oz">
+              <span class="sr-only">shop guatemala antigua</span>
+            </a>
+          </li>
+
+          <!-- Kenya AA -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1498804103079-a6351b050096?w=600&q=80"
+                alt="12oz bag of Kenya AA light roast coffee"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="card__badge">new arrival</span>
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">kenya aa</h3>
+              <p class="card__desc">blackcurrant, tomato, wine-like acidity</p>
+              <p class="card__meta">light roast · washed process</p>
+              <p class="card__price">$19.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/kenya-aa" class="card__link" aria-label="Shop Kenya AA, $19 for 12oz">
+              <span class="sr-only">shop kenya aa</span>
+            </a>
+          </li>
+
+          <!-- Sumatra Mandheling -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80"
+                alt="12oz bag of Sumatra Mandheling dark roast coffee"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">sumatra mandheling</h3>
+              <p class="card__desc">earthy, herbal, low acidity</p>
+              <p class="card__meta">dark roast · wet-hulled process</p>
+              <p class="card__price">$17.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/sumatra-mandheling" class="card__link" aria-label="Shop Sumatra Mandheling, $17 for 12oz">
+              <span class="sr-only">shop sumatra mandheling</span>
+            </a>
+          </li>
+
+          <!-- Costa Rica Tarrazú -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?w=600&q=80"
+                alt="12oz bag of Costa Rica Tarrazú medium roast coffee"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">costa rica tarrazú</h3>
+              <p class="card__desc">honey, citrus, clean finish</p>
+              <p class="card__meta">medium roast · honey process</p>
+              <p class="card__price">$18.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/costa-rica-tarrazu" class="card__link" aria-label="Shop Costa Rica Tarrazú, $18 for 12oz">
+              <span class="sr-only">shop costa rica tarrazú</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           SIGNATURE BLENDS
+           ================================================================= -->
+      <section class="section section--featured" aria-labelledby="blends-heading">
+        <header class="section__header">
+          <h2 id="blends-heading" class="section__title">signature blends</h2>
+          <p class="section__subtitle">crafted for consistency and complexity</p>
+        </header>
+
+        <ul class="card-grid" role="list">
+          <!-- Crossroads Blend -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=600&q=80"
+                alt="12oz bag of Crossroads Blend house dark roast coffee"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="card__badge">house blend</span>
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">crossroads blend</h3>
+              <p class="card__desc">chocolate, cherry, bold body</p>
+              <p class="card__meta">dark roast · brazil + guatemala + ethiopia</p>
+              <p class="card__price">$15.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/crossroads-blend" class="card__link" aria-label="Shop Crossroads Blend, $15 for 12oz">
+              <span class="sr-only">shop crossroads blend</span>
+            </a>
+          </li>
+
+          <!-- Morning Commute -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80"
+                alt="12oz bag of Morning Commute medium roast blend"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">morning commute</h3>
+              <p class="card__desc">balanced, sweet, easy drinking</p>
+              <p class="card__meta">medium roast · colombia + brazil</p>
+              <p class="card__price">$14.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/morning-commute" class="card__link" aria-label="Shop Morning Commute, $14 for 12oz">
+              <span class="sr-only">shop morning commute</span>
+            </a>
+          </li>
+
+          <!-- Night Owl Espresso -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80"
+                alt="12oz bag of Night Owl espresso roast blend"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="card__badge">espresso</span>
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">night owl espresso</h3>
+              <p class="card__desc">dark chocolate, molasses, thick crema</p>
+              <p class="card__meta">espresso roast · brazil + sumatra</p>
+              <p class="card__price">$16.00 <span class="card__unit">/ 12oz</span></p>
+            </div>
+            <a href="/shop/night-owl-espresso" class="card__link" aria-label="Shop Night Owl Espresso, $16 for 12oz">
+              <span class="sr-only">shop night owl espresso</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           COLD BREW & GEAR
+           ================================================================= -->
+      <section class="section" aria-labelledby="more-heading">
+        <header class="section__header">
+          <h2 id="more-heading" class="section__title">cold brew & gear</h2>
+          <p class="section__subtitle">everything else you need</p>
+        </header>
+
+        <ul class="card-grid" role="list">
+          <!-- Cold Brew Concentrate -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80"
+                alt="32oz bottle of cold brew concentrate"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">cold brew concentrate</h3>
+              <p class="card__desc">ready to drink, just add water or milk</p>
+              <p class="card__meta">32oz bottle · makes 8 servings</p>
+              <p class="card__price">$18.00 <span class="card__unit">/ bottle</span></p>
+            </div>
+            <a href="/shop/cold-brew-concentrate" class="card__link" aria-label="Shop Cold Brew Concentrate, $18 per bottle">
+              <span class="sr-only">shop cold brew concentrate</span>
+            </a>
+          </li>
+
+          <!-- Ceramic Mug -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&q=80"
+                alt="Handmade ceramic mug with KC Roast Co. logo"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">kc roast co mug</h3>
+              <p class="card__desc">handmade ceramic, 12oz capacity</p>
+              <p class="card__meta">local potter collaboration</p>
+              <p class="card__price">$24.00</p>
+            </div>
+            <a href="/shop/ceramic-mug" class="card__link" aria-label="Shop KC Roast Co. Mug, $24">
+              <span class="sr-only">shop ceramic mug</span>
+            </a>
+          </li>
+
+          <!-- Gift Card -->
+          <li class="card">
+            <div class="card__image">
+              <img
+                src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=600&q=80"
+                alt="KC Roast Co. digital gift card"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">gift card</h3>
+              <p class="card__desc">give the gift of great coffee</p>
+              <p class="card__meta">works online and in-store</p>
+              <p class="card__price">$25 – $100</p>
+            </div>
+            <a href="/shop/gift-card" class="card__link" aria-label="Shop Gift Cards from $25 to $100">
+              <span class="sr-only">shop gift card</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =================================================================
+           SUBSCRIPTION CTA
+           ================================================================= -->
+      <section class="section section--testimonials" aria-labelledby="subscription-heading">
+        <div class="newsletter">
+          <h2 id="subscription-heading" class="newsletter__title">never run out of coffee</h2>
+          <p class="newsletter__text">
+            Subscribe and save 15% on every order. Choose your beans, frequency,
+            and grind—we'll handle the rest. Skip or cancel anytime.
+          </p>
+          <a href="/subscribe" class="btn btn--primary">start subscription</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- =====================================================================
+         FOOTER
+         ===================================================================== -->
+    <footer id="site-footer" class="footer" role="contentinfo">
+      <span>&copy; 2026 kc roast co. all rights reserved.</span>
+      <a href="/privacy.html">privacy</a>
+      <a href="/terms.html">terms</a>
+    </footer>
+
+    <!-- =====================================================================
+         SCRIPTS (DEFERRED)
+         ===================================================================== -->
+    <script src="/js/page-transition.js" defer></script>
+    <script src="/js/utils.js" defer></script>
+    <script src="/js/header.js" defer></script>
+    <script src="/js/footer.js" defer></script>
+
+  </body>
+</html>
