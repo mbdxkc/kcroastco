@@ -340,6 +340,39 @@ blockquote{
   justify-self: end;
 }
 
+/* ============================
+   FIX: header social icons
+   ============================ */
+
+.nav .socials{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* give the social link a real box */
+.nav-link--social{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--muted);
+}
+
+/* size the SVG explicitly */
+.nav-link--social .icon,
+.nav-link--social svg{
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+/* hover behavior */
+.nav-link--social:hover{
+  color: var(--accent-primary);
+}
+
 .nav-link{
   font-size: .875rem;
   font-weight: 600;
