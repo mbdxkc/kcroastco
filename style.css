@@ -649,25 +649,62 @@ figure{
 
 
 /* =========================================================
-   11) hero section - SINGLE COLUMN CENTERED
+   11) hero section – FULL BLEED BACKGROUND
    ========================================================= */
 .hero{
+  position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   gap: 3rem;
-  
+
   min-height: calc(100vh - var(--header-h));
   padding: 4rem 1.5rem;
-  max-width: var(--container);
   margin: 0 auto;
+
+  overflow: hidden;
 }
 
+/* background image layer */
+.hero::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url('/images/salute.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* contrast overlay */
+.hero::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15,13,12,.65) 0%,
+      rgba(15,13,12,.55) 45%,
+      rgba(15,13,12,.85) 100%
+    );
+}
+
+/* content layer */
 .hero__content{
+  position: relative;
+  z-index: 2;
   max-width: 720px;
 }
 
+/* typography stays unchanged */
 .hero__title{
   font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 800;
@@ -689,34 +726,6 @@ figure{
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-}
-
-.hero__image{
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  aspect-ratio: 16/9;
-  box-shadow: var(--shadow-glow);
-}
-
-.hero__image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero__image::after{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(196,167,125,.1) 0%,
-    transparent 50%
-  );
-  pointer-events: none;
 }
 
 

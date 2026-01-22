@@ -84,23 +84,39 @@
       <!-- =====================================================
            hero section (single column centered)
            ===================================================== -->
-      <section class="hero" aria-labelledby="hero-heading">
-        <div class="hero__content">
-          <h1 id="hero-heading" class="hero__title">kc roast co</h1>
-          <p class="hero__tagline">small batch. locally roasted. kansas city proud.</p>
-          <div class="hero__cta-group">
-            <a href="/menu" class="btn btn--primary">view menu</a>
-            <a href="/shop" class="btn btn--outline">shop beans</a>
-          </div>
-        </div>
-        <div class="hero__image">
-          <img 
-            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80" 
-            alt="freshly roasted coffee beans in a ceramic bowl with steam rising" 
-            loading="eager"
-          />
-        </div>
-      </section>
+          <section class="hero hero-carousel">
+
+          <!-- slide 1 -->
+          <article class="hero-slide is-active">
+
+            <div class="hero-slide__media">
+              <img
+                src="/images/photo-1495474472287-4d71bcdd2085.jpg"
+                alt="friends sharing coffee with latte art"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+
+            <div class="hero-slide__overlay"></div>
+
+            <div class="hero__content">
+              <h1 class="hero__title">coffee, crafted together</h1>
+
+              <p class="hero__tagline">
+                small-batch roasting. intentional brewing. community first.
+              </p>
+
+              <div class="hero__cta-group">
+                <a href="/menu.html" class="btn btn--primary">view menu</a>
+                <a href="/location.html" class="btn btn--outline">visit us</a>
+              </div>
+            </div>
+
+          </article>
+
+        </section>
+
 
       <!-- =====================================================
            intro / about (two column)
