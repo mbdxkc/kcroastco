@@ -1,206 +1,111 @@
-/* =========================================================
-   header.js
-   =========================================================
-   @project    kc roast co
-   @desc       header navigation injection + mobile menu
-   @author     valdez campos <dez@mediabrilliance.io>
-   @version    1.1
-   ========================================================= */
+/**
+ * ============================================================================
+ * kc roast co — Header Component
+ * ============================================================================
+ * @project    kc roast co case study
+ * @version    0.2
+ * @author     Valdez Campos <dez@mediabrilliance.io>
+ * @date       2026-01-21
+ * @file       /js/header.js
+ *
+ * @desc       Reusable header component that injects site navigation
+ *             into <header id="site-header">.
+ *             Automatically detects the current page and applies
+ *             aria-current + active state styling.
+ *
+ * @usage      Add <header id="site-header"></header> to HTML
+ *             Include this script with the `defer` attribute
+ *
+ * @exports    none (IIFE)
+ * ============================================================================
+ */
 
 (function () {
   'use strict';
 
-  /* ---------------------------------------------------------
-     configuration
-     --------------------------------------------------------- */
-  const CONFIG = {
-    siteUrl: '/',
+  // ---------------------------------------------------------------------------
+  // 1. PAGE DETECTION
+  // ---------------------------------------------------------------------------
+  const currentPath = window.location.pathname;
+  const page = currentPath.split('/').pop() || 'index.html';
 
-    navLinks: [
-      { label: 'menu', href: '/menu' },
-      { label: 'shop', href: '/shop' },
-      { label: 'about', href: '/about' },
-      { label: 'contact', href: '/contact' }
-    ],
+  const isHome     = page === '' || page === 'index.html';
+  const isMenu     = page === 'menu.html';
+  const isShop     = page === 'shop.html';
+  const isAbout    = page === 'about.html';
+  const isContact  = page === 'contact.html';
 
-    socialLinks: [
-      {
-        label: 'Instagram',
-        href: 'https://instagram.com/kcroastco',
-        icon: 'instagram'
-      }
-    ],
+  // ---------------------------------------------------------------------------
+  // 2. ARIA + ACTIVE STATE HELPERS
+  // ---------------------------------------------------------------------------
+  const aria = (condition) =>
+    condition ? ' aria-current="page" class="nav-link is-active"' : ' class="nav-link"';
 
-    scrollThreshold: 50,
-    enableMobileMenu: true
-  };
+  // ---------------------------------------------------------------------------
+  // 3. HEADER HTML TEMPLATE
+  //    Grid: left (pages) | center (logo) | right (social)
+  // ---------------------------------------------------------------------------
+  const headerHTML = `
+    <div class="header-grid">
+      <nav class="nav" aria-label="primary navigation">
 
-  /* ---------------------------------------------------------
-     icons
-     --------------------------------------------------------- */
-  const ICONS = {
-    instagram: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="2" y="2" width="20" height="20" rx="5"/>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8"/>
-        <circle cx="17.5" cy="6.5" r="1"/>
-      </svg>
-    `,
-    menu: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    `,
-    close: `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    `
-  };
+        <!-- LEFT: PAGE LINKS -->
+        <div class="pages">
+          <a href="/index.html"${aria(isHome)}>home</a>
+          <a href="/menu.html"${aria(isMenu)}>menu</a>
+          <a href="/shop.html"${aria(isShop)}>shop</a>
+          <a href="/about.html"${aria(isAbout)}>about</a>
+          <a href="/contact.html"${aria(isContact)}>contact</a>
+        </div>
 
-  /* ---------------------------------------------------------
-     helpers
-     --------------------------------------------------------- */
-  function el(tag, attrs = {}, children = []) {
-    const node = document.createElement(tag);
+        <!-- CENTER: LOGO -->
+        <div class="header-title">
+          <a href="/index.html" aria-label="kc roast co home">
+            <img
+              src="/images/kcroastco_logo.svg"
+              alt="kc roast co"
+              width="180"
+              height="48"
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+        </div>
 
-    Object.entries(attrs).forEach(([k, v]) => {
-      if (k === 'class') node.className = v;
-      else if (k === 'html') node.innerHTML = v;
-      else node.setAttribute(k, v);
-    });
+        <!-- RIGHT: SOCIAL -->
+        <div class="socials">
+          <a
+            href="https://www.instagram.com/kcroastco/"
+            class="nav-link--social"
+            aria-label="kc roast co on instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/images/instagram_dark.svg" alt="" aria-hidden="true" />
+          </a>
+        </div>
 
-    children.forEach(c => {
-      if (typeof c === 'string') node.appendChild(document.createTextNode(c));
-      else if (c) node.appendChild(c);
-    });
+      </nav>
+    </div>
+  `;
 
-    return node;
+  // ---------------------------------------------------------------------------
+  // 4. DOM INSERTION
+  // ---------------------------------------------------------------------------
+  function insertHeader() {
+    const headerEl = document.getElementById('site-header');
+    if (!headerEl) return;
+
+    headerEl.innerHTML = headerHTML;
   }
 
-  function isActive(href) {
-    const p = window.location.pathname.replace(/\/$/, '');
-    const h = href.replace(/\/$/, '');
-    return p === h || (h && p.startsWith(h));
+  // ---------------------------------------------------------------------------
+  // 5. INIT
+  // ---------------------------------------------------------------------------
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', insertHeader);
+  } else {
+    insertHeader();
   }
-
-  /* ---------------------------------------------------------
-     build header
-     --------------------------------------------------------- */
-  function buildHeader() {
-    const header = document.getElementById('site-header');
-    if (!header) return;
-
-    const grid = el('div', { class: 'header-grid' });
-    const nav = el('nav', { class: 'nav', 'aria-label': 'Main navigation' });
-
-    /* LEFT */
-    const left = el('div', { class: 'nav-left' });
-    const pages = el('ul', { class: 'pages', role: 'list' });
-
-    CONFIG.navLinks.forEach(link => {
-      const a = el(
-        'a',
-        {
-          href: link.href,
-          class: `nav-link${isActive(link.href) ? ' is-active' : ''}`
-        },
-        [link.label]
-      );
-
-      if (isActive(link.href)) {
-        a.setAttribute('aria-current', 'page');
-      }
-
-      pages.appendChild(el('li', {}, [a]));
-    });
-
-    left.appendChild(pages);
-
-    /* CENTER LOGO */
-    const center = el('div', { class: 'nav-center header-logo' });
-
-    const logoLink = el('a', {
-      href: CONFIG.siteUrl,
-      'aria-label': 'kc roast co home'
-    });
-
-    const logoImg = el('img', {
-      src: '/images/kcroastco_logo.svg',
-      alt: 'kc roast co',
-      class: 'site-logo',
-      width: '140',
-      height: '36'
-    });
-
-    logoLink.appendChild(logoImg);
-    center.appendChild(logoLink);
-
-    /* RIGHT */
-    const right = el('div', { class: 'nav-right' });
-    const socials = el('ul', { class: 'socials', role: 'list' });
-
-    CONFIG.socialLinks.forEach(link => {
-      socials.appendChild(
-        el('li', {}, [
-          el('a', {
-            href: link.href,
-            target: '_blank',
-            rel: 'noopener',
-            class: 'nav-link nav-link--social',
-            'aria-label': link.label,
-            html: ICONS[link.icon]
-          })
-        ])
-      );
-    });
-
-    right.appendChild(socials);
-
-    if (CONFIG.enableMobileMenu) {
-      right.appendChild(
-        el('button', {
-          class: 'nav-toggle',
-          'aria-label': 'Toggle menu',
-          'aria-expanded': 'false',
-          html: ICONS.menu
-        })
-      );
-    }
-
-    nav.append(left, center, right);
-    grid.appendChild(nav);
-    header.appendChild(grid);
-  }
-
-  /* ---------------------------------------------------------
-     mobile menu
-     --------------------------------------------------------- */
-  function bindMobileMenu() {
-    const toggle = document.querySelector('.nav-toggle');
-    const menu = document.querySelector('.mobile-menu');
-    if (!toggle || !menu) return;
-
-    let open = false;
-
-    toggle.addEventListener('click', () => {
-      open = !open;
-      menu.classList.toggle('is-active', open);
-      toggle.innerHTML = open ? ICONS.close : ICONS.menu;
-      toggle.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-  }
-
-  /* ---------------------------------------------------------
-     init
-     --------------------------------------------------------- */
-  document.addEventListener('DOMContentLoaded', () => {
-    buildHeader();
-    bindMobileMenu();
-  });
 
 })();
