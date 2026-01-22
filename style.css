@@ -789,6 +789,11 @@ figure{
   color: var(--accent-primary);
 }
 
+.footer__case-study{
+  font-style: italic;
+  opacity: .8;
+}
+
 
 /* =========================================================
    11) hero section – FULL BLEED BACKGROUND
